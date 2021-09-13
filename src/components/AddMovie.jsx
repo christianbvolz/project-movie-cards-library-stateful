@@ -1,4 +1,5 @@
 import React from 'react';
+import AddMovieInputText from './AddMovieInputText';
 
 class AddMovie extends React.Component {
   constructor() {
@@ -14,9 +15,6 @@ class AddMovie extends React.Component {
     this.handleChange = this.handleChange.bind(this);
   }
 
-  // handleChange = ({ value, name }) => {
-  //   this.setState({ [name]: value });
-  // }
   handleChange({ target }) {
     const { name, value } = target;
     this.setState({ [name]: value });
@@ -24,38 +22,33 @@ class AddMovie extends React.Component {
 
   render() {
     const { title, subtitle, imagePath, storyLine, rating, genre } = this.state;
+    // const describe = ["Título", "Subtítulo", "Imagem", "Sinopse", "Avaliação", "Gênero"];
     return (
       <form data-testid="add-movie-form">
-        <label htmlFor="title-input" data-testid="title-input-label">
-          Título
-          <input
-            type="text"
-            value={ title }
-            name="title"
-            data-testid="title-input"
-            id="title-input"
-            onChange={ this.handleChange }
-          />
-        </label>
-        <label htmlFor="subtitle-input" data-testid="subtitle-input-label">
-          Subtítulo
-          <input
-            type="text"
-            value={ subtitle }
-            name="subtitle"
-            data-testid="subtitle-input"
-            id="subtitle-input"
-            onChange={ this.handleChange }
-          />
-        </label>
-        <label htmlFor="image-input" data-testid="image-input-label">
-          Imagem
-          <input
-            type="text"
-            value={ imagePath }
-            name="imagePath"
-            data-testid="image-input"
-            id="image-input"
+        <AddMovieInputText
+          value={ title }
+          name="title"
+          handleChange={ this.handleChange }
+          describe="Título"
+        />
+        <AddMovieInputText
+          value={ subtitle }
+          name="subtitle"
+          handleChange={ this.handleChange }
+          describe="Subtítulo"
+        />
+        <AddMovieInputText
+          value={ imagePath }
+          name="imagePath"
+          handleChange={ this.handleChange }
+          describe="Imagem"
+        />
+        <label htmlFor="d" data-testid="storyline-input-label">
+          Sinopse
+          <textarea
+            value={ storyLine }
+            data-testid="storyline-input"
+            name="storyLine"
             onChange={ this.handleChange }
           />
         </label>
