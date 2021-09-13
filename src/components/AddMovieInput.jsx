@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 class AddMovieInput extends React.Component {
   render() {
@@ -23,5 +24,16 @@ class AddMovieInput extends React.Component {
     );
   }
 }
+
+AddMovieInput.propTypes = {
+  value: PropTypes.string,
+  handleChange: PropTypes.func.isRequired,
+  describe: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+};
+
+AddMovieInput.defaultProps = {
+  value: '',
+};
 
 export default AddMovieInput;
