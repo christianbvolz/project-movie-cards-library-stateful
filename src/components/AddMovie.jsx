@@ -1,5 +1,6 @@
 import React from 'react';
 import AddMovieInput from './AddMovieInput';
+import AddMovieSelect from './AddMovieSelect';
 
 class AddMovie extends React.Component {
   constructor() {
@@ -57,6 +58,10 @@ class AddMovie extends React.Component {
           name="rating"
           handleChange={ this.handleChange }
           describe="Avaliação"
+        />
+        <AddMovieSelect
+          genre={ genre }
+          handleChange={ this.handleChange }
         />
       </form>
     );
