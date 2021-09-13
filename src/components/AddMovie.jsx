@@ -1,5 +1,5 @@
 import React from 'react';
-import AddMovieInputText from './AddMovieInputText';
+import AddMovieInput from './AddMovieInput';
 
 class AddMovie extends React.Component {
   constructor() {
@@ -25,19 +25,19 @@ class AddMovie extends React.Component {
     // const describe = ["Título", "Subtítulo", "Imagem", "Sinopse", "Avaliação", "Gênero"];
     return (
       <form data-testid="add-movie-form">
-        <AddMovieInputText
+        <AddMovieInput
           value={ title }
           name="title"
           handleChange={ this.handleChange }
           describe="Título"
         />
-        <AddMovieInputText
+        <AddMovieInput
           value={ subtitle }
           name="subtitle"
           handleChange={ this.handleChange }
           describe="Subtítulo"
         />
-        <AddMovieInputText
+        <AddMovieInput
           value={ imagePath }
           name="imagePath"
           handleChange={ this.handleChange }
@@ -52,6 +52,12 @@ class AddMovie extends React.Component {
             onChange={ this.handleChange }
           />
         </label>
+        <AddMovieInput
+          value={ rating }
+          name="rating"
+          handleChange={ this.handleChange }
+          describe="Avaliação"
+        />
       </form>
     );
   }
