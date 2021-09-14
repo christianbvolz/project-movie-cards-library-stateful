@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import AddMovie from './AddMovie';
 import SearchBar from './SearchBar';
 import MovieList from './MovieList';
@@ -14,12 +15,19 @@ class MovieLibrary extends React.Component {
     };
     this.handleChange = this.handleChange.bind(this);
     this.filters = this.filters.bind(this);
+    this.onClick = this.onClick.bind(this);
   }
 
   handleChange({ target }) {
     const { name } = target;
     const valueFilter = (name === 'bookmarkedOnly') ? target.checked : target.value;
     this.setState({ [name]: valueFilter });
+  }
+
+  onClick(newMovie) {
+    this.setState(({ movies }) => ({
+      movies: [...movies, newMovie],
+    }));
   }
 
   filters({ searchText, bookmarkedOnly, selectedGenre, movies }) {
@@ -50,10 +58,22 @@ class MovieLibrary extends React.Component {
           onSelectedGenreChange={ this.handleChange }
         />
         <MovieList movies={ this.filters(this.state) } />
-        <AddMovie />
+        <AddMovie onClick={ this.onClick } />
       </>
     );
   }
 }
+
+MovieLibrary.propTypes = {
+  movies: PropTypes.arrayOf(PropTypes.shape({
+    title: PropTypes.string.isRequired,
+    subtitle: PropTypes.string.isRequired,
+    storyline: PropTypes.string.isRequired,
+    rating: PropTypes.number.isRequired,
+    imagePath: PropTypes.string.isRequired,
+    bookmarked: PropTypes.bool.isRequired,
+    genre: PropTypes.string.isRequired,
+  })).isRequired,
+};
 
 export default MovieLibrary;
